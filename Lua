@@ -1,0 +1,36 @@
+-- โหลด Rayfield UI Library
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+-- สร้างหน้าต่าง UI หลัก
+local Window = Rayfield:CreateWindow({
+   Name = "Kao hub", -- เปลี่ยนชื่อตรงนี้
+   LoadingTitle = "กำลังโหลด...",
+   LoadingSubtitle = "กรุณารอสักครู่",
+   ConfigurationSaving = {
+      Enabled = false,
+   },
+   KeySystem = false -- ปิดระบบคีย์
+})
+
+-- สร้างแท็บเมนู
+local Tab = Window:CreateTab("เมนูหลัก", 4483362458) -- สามารถเปลี่ยนไอคอนได้
+
+-- สร้างหมวดหมู่ในแท็บ
+local Section = Tab:CreateSection("ฟังก์ชันเสกของ")
+
+-- สร้างปุ่ม
+local Button = Tab:CreateButton({
+   Name = "Spawn Lucky Block",
+   Callback = function()
+      -- โค้ดของคุณจะทำงานเมื่อกดปุ่มนี้
+      game:GetService("ReplicatedStorage"):WaitForChild("SpawnLuckyBlock"):FireServer()
+   end,
+})
+
+-- แจ้งเตือนเมื่อโหลด UI เสร็จ
+Rayfield:Notify({
+   Title = "สำเร็จ",
+   Content = "โหลด UI เรียบร้อยแล้ว!",
+   Duration = 3,
+   Image = 4483362458,
+})
